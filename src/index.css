@@ -1,0 +1,362 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar-vertical {
+  display: none;
+}
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Quicksand', sans-serif;
+  line-height: 1.5;
+  color: #ebe7ef;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background: radial-gradient(
+      circle at left,
+      rgba(237, 93, 93, 0.98),
+      rgba(186, 103, 250, 0.87)
+    );
+  background-repeat: repeat;
+}
+
+header {
+  text-align: center;
+}
+
+h1 {
+  font-size: 4rem;
+  margin: 0 auto 3rem auto;
+  color: #600606;
+}
+
+#game-container {
+  max-width: 45rem;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 6px;
+  background: linear-gradient(#191313, #441c1c);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+#players {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+#players li {
+  border: 2px solid transparent;
+  padding: 0.5rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+#players.highlight-player li.active {
+  border-color: #f65a5a;
+  animation: pulse 2s infinite ease-in-out;
+  border-radius: 1rem;
+}
+
+#players.highlight-player li.active .player-name,
+#players.highlight-player li.active .player-symbol {
+  color: #f65a5a;
+}
+
+#players button {
+  width: 3rem;
+  border: none;
+  background: none;
+  color: #f32424;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  text-align: center;
+}
+
+#players button:hover {
+  color: #f9a1a1;
+}
+
+.player {
+  border: 1px solid transparent;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.player-name {
+  display: inline-block;
+  width: 10rem;
+  font-size: 1rem;
+  color: #e1dec7;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0.5rem;
+  border-radius: 4px;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.player input {
+  font: inherit;
+  font-size: 1rem;
+  width: 10rem;
+  border: none;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  animation: pulse-text 2s infinite;
+  background-color: #be0d0d;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 4px;
+}
+
+.player-symbol {
+  margin-left: 1rem;
+  font-size: 1rem;
+  color: #e1dec7;
+}
+
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#pre-game {
+  text-align: center;
+}
+
+#pre-game button {
+  cursor: pointer;
+  background: none;
+  color: #f83131;
+  border: none;
+  font-size: 4rem;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+  animation: pulse-text-size 2s infinite ease-out;
+}
+
+#game-board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem;
+  padding: 0;
+  flex-direction: column;
+}
+
+#game-board ol {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+#game-board button {
+  width: 8rem;
+  height: 8rem;
+  border: none;
+  background: #a97272;
+  color: #ffffff;
+  border-radius: 1rem;
+  font-size: 5rem;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  #game-board button {
+    width: 5rem;
+    height: 5rem;
+    font-size: 3rem;
+    border-radius: 0.5rem;
+  }
+  #game-board {
+    margin: 0;
+  }
+
+  #game-board ol {
+    gap: 1rem;
+  }
+}
+
+#game-over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border-radius: 6px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(40, 23, 23, 0.95);
+  animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.65, 0.52) forwards;
+}
+
+#game-over h2 {
+  font-family: 'Quicksand', cursive;
+  font-size: 4rem;
+  text-align: center;
+  color: #fc5656;
+  margin: 0;
+}
+
+#game-over p {
+  font-size: 2rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+#game-over button {
+  display: block;
+  margin: 0 auto;
+  font-size: 1.5rem;
+  background: none;
+  border: 2px solid #fc5656;
+  color: #fc5656;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s, color 0.2s;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
+}
+
+#game-over button:hover {
+  background: #fc5656;
+  color: #32003f;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+}
+
+#log {
+  max-width: 20rem;
+  color: #3f3b00;
+  list-style: none;
+  margin: 2rem auto;
+  padding: 0;
+  text-align: center;
+}
+
+#log li {
+  border-radius: 4px;
+  animation: slide-in-from-left 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+  margin: 0.75rem;
+}
+
+#log li.highlighted {
+  background-color: #3f0000;
+  color: white;
+}
+
+#game-hints {
+  text-align: center;
+  color: #5c1c1c;
+}
+
+#game-hints h2 {
+  font-family: 'Caprasimo', cursive;
+  font-size: 2rem;
+  margin: 0;
+}
+
+#game-hints ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#game-hints button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: #23221f;
+  font: inherit;
+  margin-top: 1.5rem;
+}
+
+@keyframes slide-in-from-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-30%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-text {
+  0% {
+    color: #e1c7c7;
+  }
+  50% {
+    color: #9f8383;
+  }
+  100% {
+    color: #e1c7c7;
+  }
+}
+
+@keyframes pulse-text-size {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    border-color: #f65a5a;
+    box-shadow: 0 0 0 0 rgba(246, 227, 90, 0.4);
+  }
+  50% {
+    border-color: #f83131;
+    box-shadow: 0 0 0 0.5rem rgba(248, 165, 49, 0);
+  }
+  100% {
+    border-color: #f65a5a;
+    box-shadow: 0 0 0 0 rgba(246, 227, 90, 0);
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
